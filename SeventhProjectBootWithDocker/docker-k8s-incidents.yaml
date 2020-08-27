@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: docker-k8s-incidents-deployment
+  labels:
+    app: docker-k8s-incidents
+spec: 
+  replicas: 1
+  selector:
+    matchLabels:
+      app: docker-k8s-incidents
+  template:
+    metadata:
+      labels:
+        app: docker-k8s-incidents
+    spec:
+      containers:
+      - name: docker-k8s-incidents
+        image: saijayant/incidents
+        ports:
+        - containerPort: 8080    
+        
+      

@@ -20,8 +20,8 @@ public class MyController {
 	public JsonNode getData() throws IOException {
 
         ObjectMapper objectMapper = new ObjectMapper();
-        objectMapper.readTree(resourceFile.getFile());
+        //objectMapper.readTree(getClass().getClassLoader().getResourceAsStream("getIncidentList.json").getFile());
         
-		return objectMapper.readTree(resourceFile.getInputStream());
+		return objectMapper.readTree(getClass().getClassLoader().getResourceAsStream("getIncidentList.json"));
 	}
 }
