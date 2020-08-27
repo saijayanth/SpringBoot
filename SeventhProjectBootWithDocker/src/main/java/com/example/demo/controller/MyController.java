@@ -1,13 +1,27 @@
 package com.example.demo.controller;
 
+import java.io.IOException;
+
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.Resource;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 @RestController
 public class MyController {
 
-	@GetMapping("/test-docker")
-	public String getData() {
-		return "In MyController --> getData method";
+	@Value("classpath:getIncidentList.json")
+	Resource resourceFile;
+	
+	@GetMapping("/incidents")
+	public JsonNode getData() throws IOException {
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.readTree(resourceFile.getFile());
+        
+		return objectMapper.readTree(resourceFile.getInputStream());
 	}
 }
