@@ -1,5 +1,3 @@
-ADD customerdb.h2.db  /tmp/customerdb.h2.db
-
 FROM java:8
 
 EXPOSE 8080
